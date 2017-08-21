@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: username
+  password: password
+
+development:
+  <<: *default
+  database: jun-api_development
+
+test:
+  <<: *default
+  database: jun-api_test
+
+production:
+  <<: *default
+  database: jun-api_production
+  username: jun-api
+  password: <%= ENV['JUN-API_DATABASE_PASSWORD'] %>
