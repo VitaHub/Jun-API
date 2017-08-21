@@ -1,4 +1,6 @@
 class SongsController < ApplicationController
+  before_action :preload_song, only: :destroy
+
   def index
     render json: Song.all
   end
@@ -13,10 +15,19 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    render json: { status: 'not done yet' }
+    if @song.destroy
+      render status: 200
+    else
+      render json: { error: 'The song was not deleted! Something went wrong.' },
+             status: 400
+    end
   end
 
   private
+
+  def preload_song
+    @song = Song.find(params[:id])
+  end
 
   def song_params
     params.require(:song).permit(:title, :author, :audio, :extension)
