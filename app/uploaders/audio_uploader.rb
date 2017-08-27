@@ -8,12 +8,12 @@ class AudioUploader < CarrierWave::Uploader::Base
   # storage :fog
 
   def filename
-    name = [model.title, model.author].join(' - ')
-    [name, model.extension].join('.').tr(' ', '_')
+    name = "#{model.author} - #{model.title}"
+    [name, model.extension].join('.')
   end
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
