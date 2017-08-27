@@ -16,7 +16,7 @@ class SongsController < ApplicationController
 
   def destroy
     if @song.destroy
-      render status: 200
+      render json: { id: params[:id] }, status: 200
     else
       render json: { error: 'The song was not deleted! Something went wrong.' },
              status: 400
