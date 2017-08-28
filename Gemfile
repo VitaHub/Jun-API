@@ -8,6 +8,8 @@ end
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'carrierwave',              '~> 1.0'
 gem 'carrierwave-base64'
+gem 'figaro'
+gem 'fog-aws'
 gem 'pg',                       '~> 0.18'
 gem 'puma',                     '~> 3.7'
 gem 'rack-cors'

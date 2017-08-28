@@ -4,8 +4,11 @@ class AudioUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  if Rails.env.development? || Rails.env.test?
+    storage :file
+  elsif Rails.env.production?
+    storage :fog
+  end
 
   def filename
     name = "#{model.author} - #{model.title}"
